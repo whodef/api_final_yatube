@@ -3,6 +3,8 @@ from django.db import models
 
 User = get_user_model()
 
+ALLOWED_NUMBER_OF_CHAR = 1024
+
 
 class Post(models.Model):
     text = models.TextField()
@@ -13,7 +15,7 @@ class Post(models.Model):
         upload_to='posts/', null=True, blank=True)
 
     def __str__(self):
-        return self.text
+        return self.text[:ALLOWED_NUMBER_OF_CHAR]
 
 
 class Comment(models.Model):
