@@ -11,7 +11,6 @@ from posts.models import Group, Post, User, Comment
 
 class GroupViewSet(viewsets.GenericViewSet, mixins.ListModelMixin,
                    mixins.RetrieveModelMixin):
-    """"""
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
 
