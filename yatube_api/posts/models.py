@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
-from rest_framework.mixins import CreateModelMixin, ListModelMixin
 from rest_framework.viewsets import GenericViewSet
+from rest_framework.mixins import CreateModelMixin, ListModelMixin
 
 User = get_user_model()
 
@@ -52,7 +52,7 @@ class Follow(models.Model, GenericViewSet, CreateModelMixin, ListModelMixin):
         ]
 
 
-class Group(models.Model):
+class Group(models.Model, GenericViewSet, ListModelMixin):
     """Для Group доступен только метод GET."""
 
     title = models.CharField(max_length=42)
