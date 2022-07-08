@@ -53,6 +53,15 @@ python3 manage.py migrate
 python3 manage.py runserver
 ```
 
+## Запуск тестов
+
+Из корня проекта:
+
+```
+pytest
+```
+
+
 ## Эндпоинты проекта
 
 
@@ -77,3 +86,13 @@ python3 manage.py runserver
 - `api/v1/jwt/refresh/` (POST): Обновление JWT-токена.
 
 - `api/v1/jwt/verify/` (POST): Проверка JWT-токена.
+
+
+
+## Авторы
+
+Tatiana Seliuk
+
+## Лицензия
+
+[MIT](https://opensource.org/licenses/MIT)
