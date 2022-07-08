@@ -1,12 +1,15 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from rest_framework.mixins import CreateModelMixin, ListModelMixin
+from rest_framework.viewsets import GenericViewSet
 
 User = get_user_model()
 
-ALLOWED_NUMBER_OF_CHAR_TEXT = 1024
-
 
 class Post(models.Model):
+
+    ALLOWED_NUMBER_OF_CHAR_TEXT = 1024
+
     text = models.TextField()
     pub_date = models.DateTimeField('Дата публикации', auto_now_add=True)
     author = models.ForeignKey(
@@ -18,7 +21,7 @@ class Post(models.Model):
         related_name='posts', null=True, blank=True)
 
     def __str__(self):
-        return self.text[:ALLOWED_NUMBER_OF_CHAR_TEXT]
+        return self.text[:self.ALLOWED_NUMBER_OF_CHAR_TEXT]
 
 
 class Comment(models.Model):
@@ -31,7 +34,8 @@ class Comment(models.Model):
         'Дата добавления', auto_now_add=True, db_index=True)
 
 
-class Follow(models.Model):
+class Follow(models.Model, GenericViewSet, CreateModelMixin, ListModelMixin):
+
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='follower')
     following = models.ForeignKey(
