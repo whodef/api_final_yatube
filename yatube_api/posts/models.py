@@ -7,6 +7,7 @@ User = get_user_model()
 
 
 class Post(models.Model):
+    """Для Post доступны методы GET, POST, PUT, PATCH, DELETE."""
 
     ALLOWED_NUMBER_OF_CHAR_TEXT = 1024
 
@@ -25,6 +26,8 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
+    """Для Comment доступны методы GET, POST, PUT, PATCH, DELETE."""
+
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='comments')
     post = models.ForeignKey(
@@ -35,6 +38,7 @@ class Comment(models.Model):
 
 
 class Follow(models.Model, GenericViewSet, CreateModelMixin, ListModelMixin):
+    """Для Follow доступны только методы GET и POST."""
 
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='follower')
@@ -49,6 +53,8 @@ class Follow(models.Model, GenericViewSet, CreateModelMixin, ListModelMixin):
 
 
 class Group(models.Model):
+    """Для Group доступен только метод GET."""
+
     title = models.CharField(max_length=42)
     slug = models.SlugField(unique=True)
     description = models.TextField()
